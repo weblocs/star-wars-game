@@ -6,12 +6,15 @@ import Typography from "@material-ui/core/Typography";
 
 function PlayerCard(props) {
   return (
-  <Card>
+  <Card style={{width : 300, margin: 10}}>
     <CardContent>
-      <Typography color="textSecondary" gutterBottom>
+      <Typography variant="h5">
         Player {props.player}
       </Typography>
-      <Typography variant="h5" component="h2">
+      <Typography color="textSecondary" gutterBottom>
+        Points: {props.points}
+      </Typography>
+      <Typography variant="h6">
         {props.name}
       </Typography>
       <Typography color="textSecondary">Mass: {props.mass}</Typography>
