@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
+
 import PlayerCard from "./components/playerCard";
-import CircularProgress from '@material-ui/core/CircularProgress';
+import PlayButton from "./components/playButton";
+
 const API = "https://swapi.co/api/people/";
+
 
 function fetchAPI(param) {
   return fetch(API + param.toString(), {
@@ -16,8 +18,8 @@ class App extends Component {
     super(props);
     this.state = {
       people_max: null,
-      user: {'name' : '', mass: null},
-      user_2: {'name' : '', mass: null},
+      user: { name: "", mass: null },
+      user_2: { name: "", mass: null },
       user1_points: 0,
       user2_points: 0,
       message: "",
@@ -64,52 +66,51 @@ class App extends Component {
         });
       })
       .then(() =>
-        fetchAPI(random_2).then(data => {
+        fetchAPI(random_2)
+        .then(data => {
           this.setState({ user_2: data }, () => {
-            if (
-              this.state.user_2.mass &&
-              this.state.user_2.mass !== "unknown"
-            ) {
+            if (this.state.user_2.mass && this.state.user_2.mass !== "unknown") {
               mass_2 = parseFloat(this.state.user_2.mass);
             } else {
               mass_2 = 0;
             }
-
-            this.compareMass(mass_1, mass_2);
           });
         })
-      ).then(() => 
-        this.setState({ loading: 0 })
-      );
-
+      )
+      .then(() => {
+        this.compareMass(mass_1, mass_2);
+        this.setState({ loading: 0 });
+      });
   };
 
   render() {
-    const { user, user_2, user1_points, user2_points, message, loading } = this.state;
+    const {
+      user,
+      user_2,
+      user1_points,
+      user2_points,
+      message,
+      loading
+    } = this.state;
     return (
       <div>
-        <PlayerCard player="1" name={user.name} mass={user.mass} points={user1_points} />
-        <PlayerCard player="2" name={user_2.name} mass={user_2.mass} points={user2_points} />
-
-        
-        
-        <div style={{margin: 10}}>
-        { ( loading == 1 ) ? 
-        <CircularProgress /> :
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={this.toggleButtonState}
-        >
-          Play
-        </Button>
-        
-        }
-        <p>{message}</p>
-        </div>
-
-        
-        
+        <PlayerCard
+          player="1"
+          name={user.name}
+          mass={user.mass}
+          points={user1_points}
+        />
+        <PlayerCard
+          player="2"
+          name={user_2.name}
+          mass={user_2.mass}
+          points={user2_points}
+        />
+        <PlayButton
+          loading={loading}
+          message={message}
+          toggleButtonState={this.toggleButtonState}
+        />
       </div>
     );
   }
