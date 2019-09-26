@@ -2,16 +2,9 @@ import React, { Component } from "react";
 
 import PlayerCard from "./components/playerCard";
 import PlayButton from "./components/playButton";
+import fetchAPI from "./api"
 
 const API = "https://swapi.co/api/people/";
-
-
-function fetchAPI(param) {
-  return fetch(API + param.toString(), {
-    method: "GET",
-    headers: new Headers({})
-  }).then(response => response.json());
-}
 
 class App extends Component {
   constructor(props) {
