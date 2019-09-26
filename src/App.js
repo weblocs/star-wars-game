@@ -27,11 +27,9 @@ class App extends Component {
 
   compareMass = (mass_1, mass_2) => {
     if (mass_1 > mass_2) {
-      this.setState({ user1_points: this.state.user1_points + 1 });
-      this.setState({ message: "Player 1 wins" });
+      this.setState({ user1_points: this.state.user1_points + 1, message: "Player 1 wins" });
     } else if (mass_2 > mass_1) {
-      this.setState({ user2_points: this.state.user2_points + 1 });
-      this.setState({ message: "Player 2 wins" });
+      this.setState({ user2_points: this.state.user2_points + 1, message: "Player 2 wins" });
     } else if (mass_2 === mass_1) {
       this.setState({ message: "Draw" });
     }

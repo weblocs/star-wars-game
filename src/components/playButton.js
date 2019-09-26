@@ -6,7 +6,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 function PlayButton(props) {
   return (
     <div style={{margin: 10}}>
-    { ( props.loading == 1 ) ? 
+    { ( props.loading === 1 ) ? 
     <CircularProgress /> :
     <Button
       variant="contained"
