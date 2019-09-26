@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 
+import PlayerCard from './components/playerCard'
 const API = "https://swapi.co/api/people/";
 
 
@@ -95,35 +93,9 @@ class App extends Component {
     const { user, user_2, user1_points, user2_points, message } = this.state;
     return (
       <div>
-        <Card>
-          <CardContent>
-            <Typography color="textSecondary" gutterBottom>
-              User 1
-            </Typography>
-            <Typography variant="h5" component="h2">
-            {user.name}
-            </Typography>
-            <Typography color="textSecondary">
-            mass: {user.mass}
-            </Typography>
-          </CardContent>
-        </Card>
-        <div>
-          <div>
-            <p>USER 1</p>
-            <p>Points:{user1_points}</p>
-            <p>Actual Card</p>
-            <p>Name:{user.name}</p>
-            <p>Mass:{user.mass}</p>
-          </div>
-          <div>
-            <p>USER 2</p>
-            <p>Points:{user2_points}</p>
-            <p>Actual Card</p>
-            <p>Name:{user_2.name}</p>
-            <p>Mass:{user_2.mass}</p>
-          </div>
-        </div>
+        <PlayerCard player="1" name={user.name} mass={user.mass} />
+        <PlayerCard player="2" name={user_2.name} mass={user_2.mass} />
+        
         <button onClick={this.toggleButtonState}> Click me </button>
         <p>{message}</p>
       </div>
