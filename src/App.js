@@ -1,26 +1,134 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const API = "https://swapi.co/api/people/";
+
+
+
+
+function fetchAPI(param) {
+  return fetch(API + param.toString(), {
+    method: "GET",
+    headers: new Headers({  })
+  }).then(response => response.json());
+}
+
+
+
+
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      people_max: null,
+      user: Object,
+      user_2: Object,
+      user1_points: 0,
+      user2_points: 0,
+      message: ""
+    };
+  }
+  componentDidMount() {
+    fetch(API)
+      .then(response => response.json())
+      .then(data => this.setState({ people_max: data.count }));
+  }
+  
+  compareMass = (mass_1, mass_2) => {
+    if (mass_1 > mass_2) {
+      this.setState({ user1_points: this.state.user1_points + 1 });
+      this.setState({ message: "Wygrywa gracz 1" });
+    } else if (mass_2 > mass_1) {
+      this.setState({ user2_points: this.state.user2_points + 1 });
+      this.setState({ message: "Wygrywa gracz 2" });
+    } else if (mass_2 === mass_1) {
+      this.setState({ message: "Remis" });
+    }
+  }
+
+  toggleButtonState = () => {
+    let min = 1;
+    let max = this.state.people_max + 1;
+    let random = Math.round(min + Math.random() * (max - min));
+    let random_2 = Math.round(min + Math.random() * (max - min));
+
+    let mass_1 = 0;
+    let mass_2 = 0;
+
+    this.setState({ message: "Loading..." });
+
+    fetchAPI(random)
+      .then(data => {
+        this.setState({ user: data }, () => {
+          
+          if (this.state.user.mass && this.state.user.mass !== "unknown") {
+            mass_1 = parseFloat(this.state.user.mass);
+          } else {
+            mass_1 = 0;
+          }
+        });
+      })
+      .then(() =>
+        fetchAPI(random_2).then(data => {
+          this.setState({ user_2: data }, () => {
+            
+            if (
+              this.state.user_2.mass &&
+              this.state.user_2.mass !== "unknown"
+            ) {
+              mass_2 = parseFloat(this.state.user_2.mass);
+            } else {
+              mass_2 = 0;
+            }
+
+            this.compareMass(mass_1, mass_2);
+            
+          });
+        })
+      );
+  };
+
+  render() {
+    const { user, user_2, user1_points, user2_points, message } = this.state;
+    return (
+      <div>
+        <Card>
+          <CardContent>
+            <Typography color="textSecondary" gutterBottom>
+              User 1
+            </Typography>
+            <Typography variant="h5" component="h2">
+            {user.name}
+            </Typography>
+            <Typography color="textSecondary">
+            mass: {user.mass}
+            </Typography>
+          </CardContent>
+        </Card>
+        <div>
+          <div>
+            <p>USER 1</p>
+            <p>Points:{user1_points}</p>
+            <p>Actual Card</p>
+            <p>Name:{user.name}</p>
+            <p>Mass:{user.mass}</p>
+          </div>
+          <div>
+            <p>USER 2</p>
+            <p>Points:{user2_points}</p>
+            <p>Actual Card</p>
+            <p>Name:{user_2.name}</p>
+            <p>Mass:{user_2.mass}</p>
+          </div>
+        </div>
+        <button onClick={this.toggleButtonState}> Click me </button>
+        <p>{message}</p>
+      </div>
+    );
+  }
 }
 
 export default App;
