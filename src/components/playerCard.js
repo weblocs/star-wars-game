@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -23,5 +24,12 @@ function PlayerCard(props) {
     </CardContent>
   </Card> );
 }
+
+PlayerCard.propTypes = {
+  player: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  mass: PropTypes.string.isRequired,
+  points: PropTypes.number
+};
 
 export default PlayerCard;
