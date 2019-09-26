@@ -4,8 +4,6 @@ import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-
-
 function PlayButton(props) {
   return (
     <div style={{ margin: 10 }}>
@@ -25,10 +23,15 @@ function PlayButton(props) {
   );
 }
 
+PlayButton.defaultProps = {
+    loading: 1,
+    message: ''
+};
+
 PlayButton.propTypes = {
-  loading: PropTypes.number.isRequired,
+  loading: PropTypes.number,
   toggleButtonState: PropTypes.func.isRequired,
-  message: PropTypes.string.isRequired
+  message: PropTypes.string
 };
 
 export default PlayButton;

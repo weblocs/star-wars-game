@@ -25,10 +25,16 @@ function PlayerCard(props) {
   </Card> );
 }
 
+PlayerCard.defaultProps = {
+  name: '1',
+  mass: '',
+  points: 0
+};
+
 PlayerCard.propTypes = {
   player: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  mass: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  mass: PropTypes.string,
   points: PropTypes.number
 };
 
