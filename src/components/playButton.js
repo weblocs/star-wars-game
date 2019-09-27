@@ -30,7 +30,7 @@ PlayButton.defaultProps = {
 
 PlayButton.propTypes = {
   loading: PropTypes.number,
-  toggleButtonState: PropTypes.func.isRequired,
+  toggleButtonState: PropTypes.func,
   message: PropTypes.string
 };
 

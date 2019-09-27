@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="MuiPaper-root MuiPaper-elevation1 MuiCard-root MuiPaper-rounded"
+  style={
+    Object {
+      "margin": 10,
+      "width": 300,
+    }
+  }
+>
+  <div
+    className="MuiCardContent-root"
+  >
+    <h5
+      className="MuiTypography-root MuiTypography-h5"
+    >
+      Player 
+      1
+    </h5>
+    <p
+      className="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
+    >
+      Points: 
+      0
+    </p>
+    <h6
+      className="MuiTypography-root MuiTypography-h6"
+    >
+      1
+    </h6>
+    <p
+      className="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+    >
+      
+       
+      
+    </p>
+  </div>
+</div>
+`;
