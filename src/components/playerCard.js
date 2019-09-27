@@ -19,14 +19,14 @@ function PlayerCard(props) {
         {props.name}
       </Typography>
       <Typography color="textSecondary">
-        { props.mass && 'Mass: ' } {props.mass}
+        { ( props.mass > 0 ) ? 'Compare value: ' + props.mass : '' } 
         </Typography>
     </CardContent>
   </Card> );
 }
 
 PlayerCard.defaultProps = {
-  name: '1',
+  name: 'Not found',
   mass: '',
   points: 0
 };
@@ -34,7 +34,7 @@ PlayerCard.defaultProps = {
 PlayerCard.propTypes = {
   player: PropTypes.string.isRequired,
   name: PropTypes.string,
-  mass: PropTypes.string,
+  mass: PropTypes.number,
   points: PropTypes.number
 };
 

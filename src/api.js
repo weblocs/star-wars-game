@@ -1,13 +1,14 @@
-const API = "https://swapi.co/api/people/";
+function fetchRandomPerson(max, compareData) {
 
-function fetchRandomPerson(param) {
+  let API = "https://swapi.co/api/" + compareData + "/";
+
   let min = 1;
-  let max = param;
   let random = Math.round(min + Math.random() * (max - min));
 
   return fetch(API + random.toString(), {
     method: "GET"
-  }).then(response => response.json());
+  })
+  .then(response => response.json());
 }
 
 export default fetchRandomPerson;
