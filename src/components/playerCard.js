@@ -26,7 +26,7 @@ function PlayerCard(props) {
 }
 
 PlayerCard.defaultProps = {
-  name: '1',
+  name: 'Not found',
   mass: '',
   points: 0
 };
