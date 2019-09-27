@@ -13,7 +13,7 @@ function PlayButton(props) {
         <Button
           variant="contained"
           color="primary"
-          onClick={props.toggleButtonState.bind(null)}
+          onClick={() => props.toggleButtonState()}
         >
           Play
         </Button>

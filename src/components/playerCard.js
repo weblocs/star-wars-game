@@ -19,7 +19,7 @@ function PlayerCard(props) {
         {props.name}
       </Typography>
       <Typography color="textSecondary">
-        { props.mass ? 'Mass: ' : '' } {props.mass}
+        { props.mass && 'Mass: ' } {props.mass}
         </Typography>
     </CardContent>
   </Card> );
