@@ -1,4 +1,4 @@
-# star-wars project
+# Star Wars Game
 
 1. Clone repo
 2. npm install
